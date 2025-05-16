@@ -1,0 +1,911 @@
+.navbar.scrolled .logo {
+    height: 56px;
+    width: 56px;
+}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | Mercury Trust Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --primary: #0056b3;
+    --primary-glow: rgba(0, 86, 179, 0.4);
+    --secondary: #00264d;
+    --accent: #00c2ff;
+    --accent-glow: rgba(0, 194, 255, 0.4);
+    --dark: #121212;
+    --dark-lighter: #1e1e1e;
+    --dark-medium: #252525;
+    --gray: #a0a0a0;
+    --light-text: #e0e0e0;
+    --card-bg: #1a1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark);
+    color: var(--light-text);
+    overflow-x: hidden;
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 1rem 2rem;
+    background: rgba(18, 18, 18, 0.95);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.navbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    align-items: center;
+}
+
+.logo {
+    height: 64px;
+    width: 64px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--light-text);
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent);
+    background-color: rgba(0, 194, 255, 0.08);
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.contact-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.contact-btn:hover {
+    background-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--accent-glow), 0 0 10px var(--accent-glow);
+}
+
+/* Page Header */
+.page-header {
+    height: 50vh;
+    min-height: 400px;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, rgba(0, 194, 255, 0) 70%);
+    top: -50%;
+    left: -50%;
+    z-index: 0;
+    animation: pulse 15s infinite;
+    box-shadow: 0 0 50px var(--accent-glow);
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(5%, 5%);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.header-content {
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+    padding-top: 120px; /* Increased from 80px to prevent overlap with navbar */
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.3s;
+    text-shadow: 0 0 20px var(--accent-glow);
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.6s;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Our Story Section */
+.our-story {
+    padding: 6rem 2rem;
+    background-color: var(--dark-lighter);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px var(--accent-glow);
+}
+
+.section-title p {
+    font-size: 1.1rem;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.story-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3rem;
+}
+
+.story-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.story-text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.story-text p.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.story-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.story-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 20px var(--primary-glow);
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.6s ease;
+    border: 1px solid var(--accent);
+}
+
+.story-image.visible img {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Team Section */
+.team {
+    padding: 6rem 2rem;
+    background-color: var(--dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.team::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, rgba(0, 194, 255, 0) 70%);
+    bottom: -150px;
+    right: -150px;
+    border-radius: 50%;
+    z-index: 0;
+    box-shadow: 0 0 50px var(--accent-glow);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.team-card {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.team-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+}
+
+.team-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.team-info {
+    padding: 2rem;
+    text-align: center;
+}
+
+.team-info h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--secondary);
+}
+
+.team-info p {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+}
+
+.team-social {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.team-social a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    color: var(--gray);
+}
+
+.team-social a:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* Core Values Section */
+.core-values {
+    padding: 6rem 2rem;
+    background-color: white;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.value-card {
+    padding: 2rem;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.value-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    border-bottom-color: var(--accent);
+}
+
+.value-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+
+.value-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+
+.value-card p {
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* Contact CTA */
+.contact-cta {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-cta::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
+    top: 0;
+    left: 0;
+    opacity: 0.2;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.cta-content p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.cta-btn:hover {
+    background-color: #00a8e6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 15px var(--accent-glow);
+}
+
+/* Footer */
+.footer {
+    padding: 4rem 2rem 2rem;
+    background-color: var(--dark);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    top: 0;
+    left: 0;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+}
+
+.footer-column h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+    color: var(--light-text);
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.footer-column p, .footer-column a {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.8rem;
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: var(--accent);
+    transform: translateX(5px);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    color: var(--light-text);
+}
+
+.social-link:hover {
+    background-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .navbar-left, .navbar-right {
+        display: none;
+    }
+    
+    .navbar-center {
+        justify-content: flex-start;
+    }
+    
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Mobile menu styles */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+.mobile-menu-link {
+    text-decoration: none;
+    color: var(--light-text);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-link:hover {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--light-text);
+    cursor: pointer;
+    z-index: 1001;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+</style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar">
+<div class="navbar-left">
+    <a href="qsf.html" class="nav-link">QSF</a>
+</div>
+<div class="navbar-center">
+    <a href="index.html">
+        <img src="img/logo.png" alt="Mercury Trust Company" class="logo">
+    </a>
+</div>
+<div class="navbar-right">
+    <a href="aboutus.html" class="nav-link">About Us</a>
+    <button class="contact-btn">Contact Us</button>
+</div>
+<div class="mobile-menu-toggle">
+    <i class="fas fa-bars"></i>
+</div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+<a href="index.html" class="mobile-menu-link">Home</a>
+<a href="services.html" class="mobile-menu-link">Services</a>
+<a href="qsf.html" class="mobile-menu-link">QSF</a>
+<a href="aboutus.html" class="mobile-menu-link">About Us</a>
+<button class="contact-btn">Contact Us</button>
+</div>
+
+<!-- Page Header -->
+<header class="page-header">
+<div class="header-content">
+    <h1>About Mercury Trust</h1>
+    <p>We are a team of dedicated professionals committed to providing exceptional Qualified Settlement Fund administration with integrity and precision.</p>
+</div>
+</header>
+
+<!-- Our Story Section -->
+<section class="our-story">
+<div class="section-title">
+    <h2>Our Story</h2>
+    <p>Learn about our journey to becoming a trusted leader in QSF administration.</p>
+</div>
+<div class="story-content">
+    <div class="story-text">
+        <p>Mercury Trust Company was founded by a team of financial and legal experts who recognized the need for specialized, client-focused Qualified Settlement Fund administration. Our founders brought together decades of combined experience in trust administration, financial management, and regulatory compliance.</p>
+        <p>Since our inception, we have been guided by a simple philosophy: to provide unparalleled service with unwavering integrity. We understand that behind every settlement fund are real people whose lives have been affected and who deserve the highest level of care and professionalism in the administration of their funds.</p>
+        <p>Over the years, we have built a reputation for excellence by combining technical expertise with a personalized approach to client service. We have managed QSFs for settlements of all sizes across a diverse range of industries and case types, always maintaining our commitment to regulatory compliance and fiduciary responsibility.</p>
+        <p>Today, Mercury Trust Company stands as a trusted partner to law firms, corporations, and claimants nationwide, helping to ensure that settlement funds are managed efficiently, distributed accurately, and administered in full compliance with all applicable regulations.</p>
+    </div>
+    <div class="story-image">
+        <img src="img/building.png" alt="Mercury Trust Company Building">
+    </div>
+</div>
+</section>
+
+
+<!-- Core Values Section -->
+<section class="core-values">
+<div class="section-title">
+    <h2>Our Core Values</h2>
+    <p>The principles that guide everything we do at Mercury Trust.</p>
+</div>
+<div class="values-grid">
+    <div class="value-card">
+        <div class="value-icon">
+            <i class="fas fa-balance-scale"></i>
+        </div>
+        <h3>Integrity</h3>
+        <p>We adhere to the highest ethical standards in all our actions and decisions, providing transparent and honest service to all stakeholders.</p>
+    </div>
+    <div class="value-card">
+        <div class="value-icon">
+            <i class="fas fa-star"></i>
+        </div>
+        <h3>Excellence</h3>
+        <p>We are committed to delivering exceptional service and continuously improving our processes and expertise to exceed expectations.</p>
+    </div>
+    <div class="value-card">
+        <div class="value-icon">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3>Responsibility</h3>
+        <p>We take our fiduciary duty seriously, acting with prudence and diligence to protect and manage the funds entrusted to our care.</p>
+    </div>
+    <div class="value-card">
+        <div class="value-icon">
+            <i class="fas fa-handshake"></i>
+        </div>
+        <h3>Client Focus</h3>
+        <p>We place our clients' needs at the center of everything we do, providing personalized service tailored to each unique situation.</p>
+    </div>
+    <div class="value-card">
+        <div class="value-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Innovation</h3>
+        <p>We embrace technological advancements and creative solutions to enhance efficiency and effectiveness in fund administration.</p>
+    </div>
+    <div class="value-card">
+        <div class="value-icon">
+            <i class="fas fa-users"></i>
+        </div>
+        <h3>Collaboration</h3>
+        <p>We work closely with clients, legal teams, and other stakeholders to ensure a coordinated and seamless administration process.</p>
+    </div>
+</div>
+</section>
+
+<!-- Contact CTA -->
+<section class="contact-cta">
+<div class="cta-content">
+    <h2>Partner With Mercury Trust</h2>
+    <p>Contact us today to discuss how we can assist with your Qualified Settlement Fund administration needs.</p>
+    <button class="cta-btn">Contact Us</button>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+<div class="footer-content">
+    <div class="footer-column">
+        <h3>Mercury Trust Company</h3>
+        <p>Providing professional QSF administration services with integrity, transparency, and excellence.</p>
+        <div class="social-links">
+            <a href="#" class="social-link">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+    </div>
+    <div class="footer-column">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="qsf.html">QSF</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-column">
+        <h3>Contact Information</h3>
+        <p>1234 Financial District</p>
+        <p>New York, NY 10001</p>
+        <p>info@mercurytrust.co</p>
+        <p>(555) 123-4567</p>
+    </div>
+</div>
+<div class="copyright">
+    <p>&copy; 2025 Mercury Trust Company. All rights reserved.</p>
+</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+<script>
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Mobile menu toggle
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+mobileMenuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+});
+
+// Animate elements on scroll
+const storyParagraphs = document.querySelectorAll('.story-text p');
+const storyImage = document.querySelector('.story-image');
+const teamCards = document.querySelectorAll('.team-card');
+const valueCards = document.querySelectorAll('.value-card');
+
+const animateOnScroll = () => {
+    storyParagraphs.forEach((para, index) => {
+        const paraTop = para.getBoundingClientRect().top;
+        if (paraTop < window.innerHeight - 100) {
+            setTimeout(() => {
+                para.classList.add('visible');
+            }, index * 200);
+        }
+    });
+    
+    const imgTop = storyImage.getBoundingClientRect().top;
+    if (imgTop < window.innerHeight - 100) {
+        storyImage.classList.add('visible');
+    }
+    
+    teamCards.forEach((card, index) => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < window.innerHeight - 100) {
+            setTimeout(() => {
+                card.classList.add('visible');
+            }, index * 100);
+        }
+    });
+    
+    valueCards.forEach((card, index) => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < window.innerHeight - 100) {
+            setTimeout(() => {
+                card.classList.add('visible');
+            }, index * 100);
+        }
+    });
+};
+
+window.addEventListener('scroll', animateOnScroll);
+
+// Contact button redirect
+document.querySelector('.cta-btn').addEventListener('click', () => {
+    window.location.href = 'index.html#contact';
+});
+
+document.querySelector('.contact-btn').addEventListener('click', () => {
+    window.location.href = 'index.html#contact';
+});
+
+// Initial animation check
+window.addEventListener('load', animateOnScroll);
+</script>
+</body>
+</html>

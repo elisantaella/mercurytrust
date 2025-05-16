@@ -1,0 +1,1123 @@
+.navbar.scrolled .logo {
+    height: 56px;
+    width: 56px;
+}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QSF Information | Mercury Trust Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --primary: #0056b3;
+    --primary-glow: rgba(0, 86, 179, 0.4);
+    --secondary: #00264d;
+    --accent: #00c2ff;
+    --accent-glow: rgba(0, 194, 255, 0.4);
+    --dark: #121212;
+    --dark-lighter: #1e1e1e;
+    --dark-medium: #252525;
+    --gray: #a0a0a0;
+    --light-text: #e0e0e0;
+    --card-bg: #1a1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark);
+    color: var(--light-text);
+    overflow-x: hidden;
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 1rem 2rem;
+    background: rgba(18, 18, 18, 0.95);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.navbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    align-items: center;
+}
+
+.logo {
+    height: 64px;
+    width: 64px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--light-text);
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent);
+    background-color: rgba(0, 194, 255, 0.08);
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.contact-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.contact-btn:hover {
+    background-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--accent-glow), 0 0 10px var(--accent-glow);
+}
+
+/* Page Header */
+.page-header {
+    height: 50vh;
+    min-height: 400px;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    position: relative;
+    overflow: hidden;
+    color: white;
+}
+
+.page-header::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, rgba(0, 194, 255, 0) 70%);
+    top: -50%;
+    left: -50%;
+    z-index: 0;
+    animation: pulse 15s infinite;
+    box-shadow: 0 0 50px var(--accent-glow);
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(5%, 5%);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.header-content {
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+    padding-top: 120px; /* Increased from 80px to prevent overlap with navbar */
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.3s;
+    text-shadow: 0 0 20px var(--accent-glow);
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.6s;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* QSF Overview Section */
+.qsf-overview {
+    padding: 6rem 2rem;
+    background-color: var(--dark-lighter);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px var(--accent-glow);
+}
+
+.section-title p {
+    font-size: 1.1rem;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.overview-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 3rem;
+}
+
+.overview-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.overview-text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.overview-text p.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.overview-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.overview-image img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 20px var(--primary-glow);
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.6s ease;
+    border: 1px solid var(--accent);
+}
+
+.overview-image.visible img {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Benefits Section */
+.benefits {
+    padding: 6rem 2rem;
+    background-color: var(--dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.benefits::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, rgba(0, 194, 255, 0) 70%);
+    bottom: -150px;
+    right: -150px;
+    border-radius: 50%;
+    z-index: 0;
+    box-shadow: 0 0 50px var(--accent-glow);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.benefit-card {
+    background-color: var(--dark-lighter);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    border: 1px solid rgba(0, 194, 255, 0.1);
+}
+
+.benefit-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 20px var(--primary-glow);
+    border-color: var(--accent);
+}
+
+.benefit-icon {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.benefit-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--light-text);
+}
+
+.benefit-card p {
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* Process Section */
+.process {
+    padding: 6rem 2rem;
+    background-color: var(--dark-lighter);
+}
+
+.process-steps {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.process-step {
+    display: flex;
+    margin-bottom: 4rem;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.process-step.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.process-step:last-child {
+    margin-bottom: 0;
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-right: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 86, 179, 0.3), 0 0 15px var(--primary-glow);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.step-content {
+    flex-grow: 1;
+}
+
+.step-content h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.step-content p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.process-connector {
+    position: absolute;
+    top: 80px;
+    left: 40px;
+    width: 2px;
+    height: calc(100% - 40px);
+    background: linear-gradient(to bottom, var(--primary), rgba(0, 86, 179, 0.1));
+    z-index: -1;
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* FAQ Section */
+.faq {
+    padding: 6rem 2rem;
+    background-color: var(--dark);
+}
+
+.faq-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 1.5rem;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--dark-lighter);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+    border: 1px solid rgba(0, 194, 255, 0.05);
+}
+
+.faq-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.faq-question {
+    padding: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: var(--light-text);
+    transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: rgba(0, 194, 255, 0.08);
+    color: var(--accent);
+    text-shadow: 0 0 5px var(--accent-glow);
+}
+
+.faq-question i {
+    transition: all 0.3s ease;
+    color: var(--accent);
+}
+
+.faq-question.active {
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent-glow);
+    border-bottom: 1px solid rgba(0, 194, 255, 0.1);
+}
+
+.faq-question.active i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    padding: 0 1.5rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    line-height: 1.8;
+    color: var(--gray);
+}
+
+.faq-answer.active {
+    padding: 0 1.5rem 1.5rem;
+    max-height: 1000px;
+}
+
+/* Contact CTA */
+.contact-cta {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-cta::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
+    top: 0;
+    left: 0;
+    opacity: 0.2;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.cta-content h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.cta-content p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.cta-btn:hover {
+    background-color: #00a8e6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 15px var(--accent-glow);
+}
+
+/* Footer */
+.footer {
+    padding: 4rem 2rem 2rem;
+    background-color: var(--dark);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    top: 0;
+    left: 0;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+}
+
+.footer-column h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+    color: var(--light-text);
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.footer-column p, .footer-column a {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.8rem;
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: var(--accent);
+    transform: translateX(5px);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    color: var(--light-text);
+}
+
+.social-link:hover {
+    background-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .navbar-left, .navbar-right {
+        display: none;
+    }
+    
+    .navbar-center {
+        justify-content: flex-start;
+    }
+    
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+    
+    .process-step {
+        flex-direction: column;
+    }
+    
+    .step-number {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .process-connector {
+        display: none;
+    }
+}
+
+/* Mobile menu styles */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+.mobile-menu-link {
+    text-decoration: none;
+    color: var(--light-text);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-link:hover {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--light-text);
+    cursor: pointer;
+    z-index: 1001;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+</style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar">
+<div class="navbar-left">
+    <a href="qsf.html" class="nav-link">QSF</a>
+</div>
+<div class="navbar-center">
+    <a href="index.html">
+        <img src="img/logo.png" alt="Mercury Trust Company" class="logo">
+    </a>
+</div>
+<div class="navbar-right">
+    <a href="aboutus.html" class="nav-link">About Us</a>
+    <button class="contact-btn">Contact Us</button>
+</div>
+<div class="mobile-menu-toggle">
+    <i class="fas fa-bars"></i>
+</div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+<a href="index.html" class="mobile-menu-link">Home</a>
+<a href="services.html" class="mobile-menu-link">Services</a>
+<a href="qsf.html" class="mobile-menu-link">QSF</a>
+<a href="aboutus.html" class="mobile-menu-link">About Us</a>
+<button class="contact-btn">Contact Us</button>
+</div>
+
+<!-- Page Header -->
+<header class="page-header">
+<div class="header-content">
+    <h1>Qualified Settlement Funds</h1>
+    <p>Understanding QSFs and how Mercury Trust provides expert administration services for your settlement needs.</p>
+</div>
+</header>
+
+<!-- QSF Overview Section -->
+<section class="qsf-overview">
+<div class="section-title">
+    <h2>What is a QSF?</h2>
+    <p>An introduction to Qualified Settlement Funds and their purpose.</p>
+</div>
+<div class="overview-content">
+    <div class="overview-text">
+        <p>A Qualified Settlement Fund (QSF), also known as a 468B trust, is a court-approved financial vehicle used to hold and manage settlement proceeds in litigation involving one or multiple plaintiffs. It provides a flexible framework to safeguard funds until they are ready to be distributed to eligible claimants and participating firms.</p>
+        <p>QSFs allow for a clear separation between settlement receipt and disbursement. This helps avoid constructive receipt, enabling time for tax planning, lien resolution, probate, or other critical post-settlement processes.</p>
+        <p>When properly established and administered, a QSF allows defendants to make payments, obtain immediate tax deductions, and secure full legal releases, while giving plaintiffs and their attorneys time to resolve allocation issues, liens, and structured settlement arrangements without pressure from defendants.</p>
+        <p>Mercury Trust Company specializes in the administration of QSFs, ensuring full compliance with legal and tax requirements while providing transparent and efficient management of settlement funds throughout the process.</p>
+    </div>
+    <div class="overview-image">
+        <img src="img/concept.png" alt="QSF Administration Concept">
+    </div>
+</div>
+</section>
+
+<!-- Benefits Section -->
+<section class="benefits">
+<div class="section-title">
+    <h2>Benefits of Using a QSF</h2>
+    <p>Key advantages for all parties involved in the settlement process.</p>
+</div>
+<div class="benefits-grid">
+    <div class="benefit-card">
+        <div class="benefit-icon">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3>Avoid Constructive Receipt</h3>
+        <p>Delay distribution of funds to allow for tax planning, financial advising, or government benefit preservation without delaying the broader settlement timeline.</p>
+    </div>
+    <div class="benefit-card">
+        <div class="benefit-icon">
+            <i class="fas fa-users"></i>
+        </div>
+        <h3>Resolve Administrative Barriers</h3>
+        <p>Handle delays related to liens, bankruptcies, probate, or divorce without impacting other aspects of the settlement process or other claimants.</p>
+    </div>
+    <div class="benefit-card">
+        <div class="benefit-icon">
+            <i class="fas fa-gavel"></i>
+        </div>
+        <h3>Earn Interest</h3>
+        <p>High-dollar settlements held over time can accrue interest, which may benefit claimants and provide additional value during the administration period.</p>
+    </div>
+    <div class="benefit-card">
+        <div class="benefit-icon">
+            <i class="fas fa-balance-scale"></i>
+        </div>
+        <h3>Enable Flexible Planning</h3>
+        <p>Law firms can plan for fee receipt and explore structured settlement or trust options on behalf of clients without rushing important financial decisions.</p>
+    </div>
+    <div class="benefit-card">
+        <div class="benefit-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Financial Benefits</h3>
+        <p>Professional investment management, potential for interest earnings on settlement funds, transparent accounting, and regular financial reporting.</p>
+    </div>
+    <div class="benefit-card">
+        <div class="benefit-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+        </div>
+        <h3>Tax Advantages</h3>
+        <p>Tax-neutral environment for settlement proceeds, proper handling of tax reporting requirements, and expert management of tax implications for all parties.</p>
+    </div>
+</div>
+</section>
+
+<!-- Process Section -->
+<section class="process">
+<div class="section-title">
+    <h2>Our QSF Administration Services</h2>
+    <p>How Mercury Trust manages QSF administration from establishment to final distribution.</p>
+</div>
+<div class="process-steps">
+    <div class="process-step">
+        <div class="step-number">1</div>
+        <div class="process-connector"></div>
+        <div class="step-content">
+            <h3>Fund Establishment</h3>
+            <p>We prepare and file all necessary motions, orders, and legal documents for court approval. Our team obtains tax identification numbers and opens FDIC-insured, court-approved bank accounts to establish a solid foundation for your QSF.</p>
+        </div>
+    </div>
+    <div class="process-step">
+        <div class="step-number">2</div>
+        <div class="process-connector"></div>
+        <div class="step-content">
+            <h3>Financial Management</h3>
+            <p>We oversee treasury functions including fraud protection, fund investment, and principal preservation. Our team manages interest-bearing accounts where applicable and implements internal controls for fund security and growth.</p>
+        </div>
+    </div>
+    <div class="process-step">
+        <div class="step-number">3</div>
+        <div class="process-connector"></div>
+        <div class="step-content">
+            <h3>Disbursement Execution</h3>
+            <p>We coordinate with all relevant parties to validate eligibility and authorize distributions. Our experts handle payments to law firms and individual claimants with accuracy and transparency, preparing individualized closing statements and ledgers.</p>
+        </div>
+    </div>
+    <div class="process-step">
+        <div class="step-number">4</div>
+        <div class="process-connector"></div>
+        <div class="step-content">
+            <h3>Tax & Regulatory Compliance</h3>
+            <p>Our team prepares and files 1120-SF tax returns and manages quarterly estimated payments. We conduct audits and final tax filings at the fund's conclusion, ensuring full compliance with all regulatory requirements.</p>
+        </div>
+    </div>
+    <div class="process-step">
+        <div class="step-number">5</div>
+        <div class="process-connector"></div>
+        <div class="step-content">
+            <h3>Ongoing Reporting & Communication</h3>
+            <p>We provide real-time reporting on fund balances and activity, ensuring transparency with courts, counsel, and financial institutions. Our team coordinates qualified assignments for structured settlements or special needs trusts as needed.</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq">
+<div class="section-title">
+    <h2>Who We Support</h2>
+    <p>Our comprehensive QSF administration services are designed for a variety of settlement scenarios.</p>
+</div>
+<div class="faq-content">
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Mass Tort Settlement Programs</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+            <p>We provide specialized administration for complex mass tort settlements, managing the intricate details of multi-claimant distributions and ensuring compliance with settlement agreements and court orders.</p>
+        </div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>High-Value Single-Event Resolutions</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+            <p>For significant single-event settlements, we offer tailored administration services that address the unique needs of substantial funds and their distinctive distribution requirements.</p>
+        </div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Financial Institutions Holding Settlement Funds</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+            <p>We work closely with financial institutions to ensure proper management and distribution of settlement funds, providing specialized expertise in regulatory compliance and fund administration.</p>
+        </div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">
+            <span>Legal Teams Requiring Expert Oversight</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+            <p>Our team supports law firms and legal counsel by taking on the administrative burden of QSF management, allowing attorneys to focus on client representation while ensuring settlement funds are properly administered.</p>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- Contact CTA -->
+<section class="contact-cta">
+<div class="cta-content">
+    <h2>Expert QSF Administration</h2>
+    <p>Contact Mercury Trust today to discuss how our QSF administration services can benefit your settlement process.</p>
+    <button class="cta-btn">Contact Us</button>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+<div class="footer-content">
+    <div class="footer-column">
+        <h3>Mercury Trust Company</h3>
+        <p>Providing professional QSF administration services with integrity, transparency, and excellence.</p>
+        <div class="social-links">
+            <a href="#" class="social-link">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+    </div>
+    <div class="footer-column">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="qsf.html">QSF</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-column">
+        <h3>Contact Information</h3>
+        <p>1234 Financial District</p>
+        <p>New York, NY 10001</p>
+        <p>info@mercurytrust.co</p>
+        <p>(555) 123-4567</p>
+    </div>
+</div>
+<div class="copyright">
+    <p>&copy; 2025 Mercury Trust Company. All rights reserved.</p>
+</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+<script>
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Mobile menu toggle
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+mobileMenuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+});
+
+// Animate elements on scroll
+const overviewParagraphs = document.querySelectorAll('.overview-text p');
+const overviewImage = document.querySelector('.overview-image');
+const benefitCards = document.querySelectorAll('.benefit-card');
+const processSteps = document.querySelectorAll('.process-step');
+const faqItems = document.querySelectorAll('.faq-item');
+
+const animateOnScroll = () => {
+    overviewParagraphs.forEach((para, index) => {
+        const paraTop = para.getBoundingClientRect().top;
+        if (paraTop < window.innerHeight - 100) {
+            setTimeout(() => {
+                para.classList.add('visible');
+            }, index * 200);
+        }
+    });
+    
+    const imgTop = overviewImage.getBoundingClientRect().top;
+    if (imgTop < window.innerHeight - 100) {
+        overviewImage.classList.add('visible');
+    }
+    
+    benefitCards.forEach((card, index) => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < window.innerHeight - 100) {
+            setTimeout(() => {
+                card.classList.add('visible');
+            }, index * 100);
+        }
+    });
+    
+    processSteps.forEach((step, index) => {
+        const stepTop = step.getBoundingClientRect().top;
+        if (stepTop < window.innerHeight - 100) {
+            setTimeout(() => {
+                step.classList.add('visible');
+            }, index * 200);
+        }
+    });
+    
+    faqItems.forEach((item, index) => {
+        const itemTop = item.getBoundingClientRect().top;
+        if (itemTop < window.innerHeight - 100) {
+            setTimeout(() => {
+                item.classList.add('visible');
+            }, index * 100);
+        }
+    });
+};
+
+window.addEventListener('scroll', animateOnScroll);
+
+// FAQ toggle
+const faqQuestions = document.querySelectorAll('.faq-question');
+
+faqQuestions.forEach(question => {
+    question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const isActive = question.classList.contains('active');
+        
+        // Close all FAQ items
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.classList.remove('active');
+        });
+        
+        document.querySelectorAll('.faq-answer').forEach(a => {
+            a.classList.remove('active');
+        });
+        
+        // If the clicked item wasn't active, open it
+        if (!isActive) {
+            question.classList.add('active');
+            answer.classList.add('active');
+        }
+    });
+});
+
+// Contact button redirect
+document.querySelector('.cta-btn').addEventListener('click', () => {
+    window.location.href = 'index.html#contact';
+});
+
+document.querySelector('.contact-btn').addEventListener('click', () => {
+    window.location.href = 'index.html#contact';
+});
+
+// Initial animation check
+window.addEventListener('load', animateOnScroll);
+</script>
+</body>
+</html>

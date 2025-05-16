@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services Overview | Mercury Trust Company</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --primary-glow: rgba(0, 86, 179, 0.4);
+            --secondary: #00264d;
+            --accent: #00c2ff;
+            --accent-glow: rgba(0, 194, 255, 0.4);
+            --dark: #121212;
+            --dark-lighter: #1e1e1e;
+            --dark-medium: #252525;
+            --gray: #a0a0a0;
+            --light-text: #e0e0e0;
+            --card-bg: #1a1a1a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: var(--light-text);
+            overflow-x: hidden;
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(18, 18, 18, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled {
+            padding: 1rem 2rem;
+            background: rgba(18, 18, 18, 0.95);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar-left {
+            flex: 1;
+            display: flex;
+            justify-content: flex-start;
+        }
+        
+        .navbar-center {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .navbar-right {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .logo {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar.scrolled .logo {
+            height: 60px;
+            width: auto;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--light-text);
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            box-shadow: 0 0 8px var(--accent-glow);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent);
+            background-color: rgba(0, 194, 255, 0.08);
+            transform: translateY(-2px);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .contact-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+        
+        .contact-btn:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--accent-glow), 0 0 10px var(--accent-glow);
+        }
+        
+        /* Page Header */
+        .page-header {
+            height: 60vh;
+            min-height: 500px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, rgba(0, 194, 255, 0) 70%);
+            top: -50%;
+            left: -50%;
+            z-index: 0;
+            animation: pulse 15s infinite;
+            box-shadow: 0 0 50px var(--accent-glow);
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(5%, 5%);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+        
+        .header-content {
+            max-width: 900px;
+            position: relative;
+            z-index: 1;
+            padding-top: 80px;
+        }
+        
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 0.3s;
+            text-shadow: 0 0 20px var(--accent-glow);
+        }
+        
+        .page-header p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s forwards 0.6s;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Overview Section */
+        .overview-section {
+            padding: 6rem 2rem;
+            background-color: var(--dark-lighter);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+        
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .overview-content {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .overview-text {
+            margin-bottom: 3rem;
+        }
+        
+        .overview-text p {
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .overview-text p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .service-item {
+            background-color: var(--dark);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--primary);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .service-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .service-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 20px var(--primary-glow);
+            border-left-color: var(--accent);
+        }
+        
+        .service-item h3 {
+            font-size: 1.5rem;
+            color: var(--light-text);
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+        
+        .service-item h3:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1.8rem;
+            height: 1.8rem;
+            background-color: var(--accent);
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+            mask-size: contain;
+            -webkit-mask-size: contain;
+            mask-repeat: no-repeat;
+            -webkit-mask-repeat: no-repeat;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .service-item p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 6rem 2rem;
+            background-color: var(--dark);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .team-section::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, rgba(0, 194, 255, 0) 70%);
+            bottom: -150px;
+            right: -150px;
+            border-radius: 50%;
+            z-index: 0;
+            box-shadow: 0 0 50px var(--accent-glow);
+        }
+        
+        .team-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .team-text {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .team-text p {
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+        
+        .team-text p.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Why Choose Us Section */
+        .why-us {
+            padding: 6rem 2rem;
+            background-color: var(--dark-lighter);
+        }
+        
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        
+        .why-us-item {
+            padding: 2rem;
+            border-radius: 15px;
+            background-color: var(--dark);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            border: 1px solid rgba(0, 194, 255, 0.05);
+        }
+        
+        .why-us-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .why-us-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 20px var(--primary-glow);
+            border-color: var(--accent);
+        }
+        
+        .why-us-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: rgba(0, 86, 179, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+        
+        .why-us-icon i {
+            font-size: 2rem;
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .why-us-item h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--light-text);
+        }
+        
+        .why-us-item p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        
+        /* Contact CTA */
+        .contact-cta {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-cta::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
+            top: 0;
+            left: 0;
+            opacity: 0.2;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .cta-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+        
+        .cta-btn:hover {
+            background-color: #00a8e6;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 15px var(--accent-glow);
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 4rem 2rem 2rem;
+            background-color: var(--dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            top: 0;
+            left: 0;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            position: relative;
+            color: var(--light-text);
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.8rem;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-column a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            color: var(--light-text);
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .navbar-left, .navbar-right {
+                display: none;
+            }
+            
+            .navbar-center {
+                justify-content: flex-start;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .service-item h3 {
+                font-size: 1.3rem;
+            }
+        }
+        
+        /* Mobile menu */
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+        
+        .mobile-menu-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-link:hover {
+            color: var(--primary);
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="qsf.html" class="nav-link">QSF</a>
+        </div>
+        <div class="navbar-center">
+            <a href="index.html">
+                <img src="img/logo.png" alt="Mercury Trust Company" class="logo">
+            </a>
+        </div>
+        <div class="navbar-right">
+            <a href="aboutus.html" class="nav-link">About Us</a>
+            <button class="contact-btn">Contact Us</button>
+        </div>
+        <div class="mobile-menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <a href="index.html" class="mobile-menu-link">Home</a>
+        <a href="qsf.html" class="mobile-menu-link">QSF</a>
+        <a href="aboutus.html" class="mobile-menu-link">About Us</a>
+        <button class="contact-btn">Contact Us</button>
+    </div>
+    
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="header-content">
+            <h1>QSF Services Overview</h1>
+            <p>Trusted Settlement Solutions. Human-Focused Impact.</p>
+            <p>We provide specialized Qualified Settlement Fund (QSF) administration services designed to support law firms, corporations, and courts with precise, secure, and compassionate post-settlement solutions. From release administration through to payment, we streamline every step of the disbursement process—maximizing efficiency while safeguarding the needs of claimants and the integrity of each settlement.</p>
+        </div>
+    </header>
+    
+    <!-- Overview Section -->
+    <section class="overview-section">
+        <div class="section-title">
+            <h2>What We Do</h2>
+            <p>Our focus is singular: we deliver end-to-end QSF administration tailored for complex settlements, including class actions, mass torts, and single-event resolutions.</p>
+        </div>
+        <div class="overview-content">
+            <div class="overview-text">
+                <p>By managing the flow of settlement funds with transparency and accountability, we help ensure timely and equitable outcomes for all stakeholders. With a combination of legal insight, operational precision, and cutting-edge technology, we offer clients a seamless experience grounded in trust and results.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-item">
+                    <h3>Fund Establishment and Escrow Management</h3>
+                    <p>We handle all aspects of QSF creation, including court filings, tax identification, and secure account setup. Our team ensures proper fund structure and management from day one.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Release and Payment Administration</h3>
+                    <p>We efficiently process releases, verify eligibility criteria, and execute timely payments to claimants according to established protocols and settlement agreements.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Lien Resolution and Compliance Support</h3>
+                    <p>Our experts navigate the complexities of healthcare liens, government benefits, and other potential encumbrances to ensure proper resolution and compliance.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Tax Reporting and Accounting Services</h3>
+                    <p>We manage all tax filings, reporting requirements, and maintain comprehensive financial records throughout the settlement administration process.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Customized Claimant Communication Strategies</h3>
+                    <p>We develop and implement tailored communication plans to keep claimants informed and engaged throughout the settlement process.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Data-Driven Reporting and Analytics</h3>
+                    <p>Our advanced reporting tools provide stakeholders with real-time insights into fund activities, distributions, and overall settlement progress.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="section-title">
+            <h2>Our Team, A Mission That Matters</h2>
+            <p>Experience, expertise, and empathy working together for optimal outcomes.</p>
+        </div>
+        <div class="team-content">
+            <div class="team-text">
+                <p>Our team comprises attorneys, analysts, technologists, and project managers with experience navigating the complexities of settlement administration. We bring together diverse disciplines with a shared commitment to accuracy, integrity, and the people behind every case.</p>
+                <p>We believe professional service is not just a transaction—it's a responsibility. Every member of our team shares a deep respect for the individuals, families, and communities impacted by litigation, and we take pride in making their resolution process smooth, fair, and respectful.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Why Choose Us Section -->
+    <section class="why-us">
+        <div class="section-title">
+            <h2>Why Choose Us</h2>
+            <p>What sets Mercury Trust apart in QSF administration.</p>
+        </div>
+        <div class="why-us-grid">
+            <div class="why-us-item">
+                <div class="why-us-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>Proven Experience</h3>
+                <p>Our leadership and operational teams bring deep expertise in legal, financial, and administrative processes. We've managed thousands of claims and disbursed billions in settlements with precision and care.</p>
+            </div>
+            <div class="why-us-item">
+                <div class="why-us-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Transparent Partnerships</h3>
+                <p>We believe in responsiveness, accountability, and open communication. Our clients receive consistent updates, clear reporting, and a collaborative approach to every case.</p>
+            </div>
+            <div class="why-us-item">
+                <div class="why-us-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Human-Centered Approach</h3>
+                <p>Behind every claim is a person. We treat each claimant with empathy, respect, and urgency, because a settlement isn't just a legal resolution—it's a life event.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact CTA -->
+    <section class="contact-cta">
+        <div class="cta-content">
+            <h2>Ready to Move Forward?</h2>
+            <p>Let's talk about how our QSF services can support your next settlement. We're ready to help you serve your clients with the diligence, care, and efficiency they deserve.</p>
+            <button class="cta-btn">Contact Us Today</button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Mercury Trust Company</h3>
+                <p>Providing professional QSF administration services with integrity, transparency, and excellence.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="#" class="social-link">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="qsf.html">QSF</a>
+                <a href="aboutus.html">About Us</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Information</h3>
+                <p>1234 Financial District</p>
+                <p>New York, NY 10001</p>
+                <p>info@mercurytrust.co</p>
+                <p>(555) 123-4567</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Mercury Trust Company. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+        
+        // Animate elements on scroll
+        const overviewParagraphs = document.querySelectorAll('.overview-text p');
+        const teamParagraphs = document.querySelectorAll('.team-text p');
+        const serviceItems = document.querySelectorAll('.service-item');
+        const whyUsItems = document.querySelectorAll('.why-us-item');
+        
+        const animateOnScroll = () => {
+            overviewParagraphs.forEach((para, index) => {
+                const paraTop = para.getBoundingClientRect().top;
+                if (paraTop < window.innerHeight - 100) {
+                    setTimeout(() => {
+                        para.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+            
+            teamParagraphs.forEach((para, index) => {
+                const paraTop = para.getBoundingClientRect().top;
+                if (paraTop < window.innerHeight - 100) {
+                    setTimeout(() => {
+                        para.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+            
+            serviceItems.forEach((item, index) => {
+                const itemTop = item.getBoundingClientRect().top;
+                if (itemTop < window.innerHeight - 100) {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+            
+            whyUsItems.forEach((item, index) => {
+                const itemTop = item.getBoundingClientRect().top;
+                if (itemTop < window.innerHeight - 100) {
+                    setTimeout(() => {
+                        item.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Contact button redirect
+        document.querySelector('.cta-btn').addEventListener('click', () => {
+            window.location.href = 'index.html#contact';
+        });
+        
+        document.querySelector('.contact-btn').addEventListener('click', () => {
+            window.location.href = 'index.html#contact';
+        });
+        
+        // Initial animation check
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>

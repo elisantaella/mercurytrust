@@ -1,0 +1,937 @@
+.navbar.scrolled .logo {
+    height: 56px;
+    width: 56px;
+}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercury Trust Company | QSF Administration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --primary: #0056b3;
+    --primary-glow: rgba(0, 86, 179, 0.4);
+    --secondary: #00264d;
+    --accent: #00c2ff;
+    --accent-glow: rgba(0, 194, 255, 0.4);
+    --dark: #121212;
+    --dark-lighter: #1e1e1e;
+    --dark-medium: #252525;
+    --gray: #a0a0a0;
+    --light-text: #e0e0e0;
+    --card-bg: #1a1a1a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--dark);
+    color: var(--light-text);
+    overflow-x: hidden;
+}
+
+/* Navbar Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    padding: 1rem 2rem;
+    background: rgba(18, 18, 18, 0.95);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-left {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.navbar-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2rem;
+    align-items: center;
+}
+
+.logo {
+    height: 64px;
+    width: 64px;
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--light-text);
+    font-weight: 600;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    letter-spacing: 0.5px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: -5px;
+    left: 0;
+    background-color: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent);
+    background-color: rgba(0, 194, 255, 0.08);
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.contact-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.contact-btn:hover {
+    background-color: var(--accent);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px var(--accent-glow), 0 0 10px var(--accent-glow);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 1rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 194, 255, 0.2) 0%, rgba(0, 194, 255, 0) 70%);
+    top: -50%;
+    left: -50%;
+    z-index: 0;
+    animation: pulse 15s infinite;
+    box-shadow: 0 0 50px var(--accent-glow);
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(5%, 5%);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.hero-content {
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, var(--accent), #0099ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.3s;
+    text-shadow: 0 0 20px var(--accent-glow);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.6s;
+}
+
+.hero-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 86, 179, 0.3);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s forwards 0.9s;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.hero-btn:hover {
+    background-color: var(--accent);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px var(--accent-glow), 0 0 15px var(--accent-glow);
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Features Section */
+.features {
+    padding: 6rem 2rem;
+    background-color: var(--dark-lighter);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-title h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px var(--accent-glow);
+}
+
+.section-title p {
+    font-size: 1.1rem;
+    color: var(--gray);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    background-color: var(--dark);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    border: 1px solid rgba(0, 86, 179, 0.1);
+}
+
+.feature-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), 0 0 20px var(--primary-glow);
+    border-color: var(--accent);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.feature-card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--light-text);
+}
+
+.feature-card p {
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+/* About Section */
+.about {
+    padding: 6rem 2rem;
+    background-color: var(--dark);
+    position: relative;
+    overflow: hidden;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 194, 255, 0.15) 0%, rgba(0, 194, 255, 0) 70%);
+    bottom: -150px;
+    right: -150px;
+    border-radius: 50%;
+    z-index: 0;
+    box-shadow: 0 0 50px var(--accent-glow);
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+    padding: 0 2rem;
+}
+
+.about-text h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 15px var(--accent-glow);
+}
+
+.about-text p {
+    color: var(--gray);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.about-img {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-img img {
+    max-width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 20px var(--primary-glow);
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.6s ease;
+    border: 1px solid var(--accent);
+}
+
+.about-img.visible img {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Contact Section */
+.contact {
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, var(--accent-glow) 0%, transparent 70%);
+    top: 0;
+    left: 0;
+    opacity: 0.2;
+}
+
+.contact h2 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+.contact p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    opacity: 0.9;
+    position: relative;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 0 0 30px var(--primary-glow);
+    border: 1px solid var(--accent);
+    position: relative;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 194, 255, 0.1);
+}
+
+.form-control::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.form-control:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 2px var(--accent-glow), 0 0 10px var(--accent-glow);
+    border-color: var(--accent);
+}
+
+.submit-btn {
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 1rem;
+    width: 100%;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+.submit-btn:hover {
+    background-color: #00a8e6;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3), 0 0 15px var(--accent-glow);
+}
+
+/* Footer */
+.footer {
+    padding: 4rem 2rem 2rem;
+    background-color: var(--dark);
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    top: 0;
+    left: 0;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    position: relative;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 2rem;
+}
+
+.footer-column h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    position: relative;
+    color: var(--light-text);
+}
+
+.footer-column h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.footer-column p, .footer-column a {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.8rem;
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-column a:hover {
+    color: var(--accent);
+    transform: translateX(5px);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    color: var(--light-text);
+}
+
+.social-link:hover {
+    background-color: var(--accent);
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .navbar-left, .navbar-right {
+        display: none;
+    }
+    
+    .navbar-center {
+        justify-content: flex-start;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .section-title h2 {
+        font-size: 2rem;
+    }
+    
+    .about-text, .about-img {
+        flex: 100%;
+    }
+    
+    .about-text {
+        margin-bottom: 2rem;
+    }
+    
+    .contact-form {
+        padding: 2rem;
+    }
+}
+
+/* Mobile menu styles */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+}
+
+.mobile-menu.active {
+    transform: translateX(0);
+}
+
+.mobile-menu-link {
+    text-decoration: none;
+    color: var(--light-text);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 1rem 0;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu-link:hover {
+    color: var(--accent);
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.mobile-menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    color: var(--light-text);
+    cursor: pointer;
+    z-index: 1001;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+}
+</style>
+</head>
+<body>
+<!-- Navigation Bar -->
+<nav class="navbar">
+<div class="navbar-left">
+    <a href="qsf.html" class="nav-link">QSF</a>
+</div>
+<div class="navbar-center">
+    <a href="index.html">
+        <img src="img/logo.png" alt="Mercury Trust Company" class="logo">
+    </a>
+</div>
+<div class="navbar-right">
+    <a href="aboutus.html" class="nav-link">About Us</a>
+    <button class="contact-btn">Contact Us</button>
+</div>
+<div class="mobile-menu-toggle">
+    <i class="fas fa-bars"></i>
+</div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu">
+<a href="index.html" class="mobile-menu-link">Home</a>
+<a href="services.html" class="mobile-menu-link">Services</a>
+<a href="qsf.html" class="mobile-menu-link">QSF</a>
+<a href="aboutus.html" class="mobile-menu-link">About Us</a>
+<button class="contact-btn">Contact Us</button>
+</div>
+
+<!-- Hero Section -->
+<section class="hero">
+<div class="hero-content">
+    <h1>Trusted QSF Administration Solutions</h1>
+    <p>Mercury Trust Company provides comprehensive Qualified Settlement Fund administration services with professionalism, efficiency, and transparency.</p>
+    <button class="hero-btn">Learn More</button>
+</div>
+</section>
+
+<!-- Features Section -->
+<section class="features">
+<div class="section-title">
+    <h2>Our Services</h2>
+    <p>Mercury Trust provides comprehensive QSF administration services tailored to meet your specific needs.</p>
+</div>
+<div class="features-grid">
+    <div class="feature-card">
+        <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3>QSF Management</h3>
+        <p>Comprehensive administration of Qualified Settlement Funds with meticulous attention to regulatory compliance and fiduciary responsibility.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>Investment Services</h3>
+        <p>Strategic investment management of settlement funds designed to preserve capital while generating appropriate returns.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">
+            <i class="fas fa-file-invoice-dollar"></i>
+        </div>
+        <h3>Tax Compliance</h3>
+        <p>Expert handling of all QSF tax matters, including preparation and filing of necessary tax returns and documentation.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">
+            <i class="fas fa-hand-holding-usd"></i>
+        </div>
+        <h3>Distribution Management</h3>
+        <p>Efficient and accurate distribution of settlement proceeds to claimants according to established protocols.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">
+            <i class="fas fa-chart-pie"></i>
+        </div>
+        <h3>Financial Reporting</h3>
+        <p>Comprehensive financial statements and regular reporting to ensure complete transparency throughout the process.</p>
+    </div>
+    <div class="feature-card">
+        <div class="feature-icon">
+            <i class="fas fa-gavel"></i>
+        </div>
+        <h3>Legal Compliance</h3>
+        <p>Ensuring all aspects of QSF administration remain in strict compliance with IRC §468B and related regulations.</p>
+    </div>
+</div>
+</section>
+
+<!-- About Section -->
+<section class="about">
+<div class="about-content">
+    <div class="about-text">
+        <h2>Why Choose Mercury Trust</h2>
+        <p>Mercury Trust Company combines deep expertise in QSF administration with a client-first approach. Our team of experienced professionals is dedicated to providing comprehensive settlement fund services with integrity and precision.</p>
+        <p>With Mercury Trust, you can expect uncompromising attention to detail, regulatory expertise, and a commitment to protecting the interests of all stakeholders throughout the settlement process.</p>
+        <p>We understand that each case is unique, which is why we offer customized solutions that address the specific needs and challenges of your settlement situation.</p>
+    </div>
+    <div class="about-img">
+        <img src="img/building.png" alt="Mercury Trust Professional Team">
+    </div>
+</div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+<h2>Get In Touch</h2>
+<p>Contact us today to discuss how Mercury Trust can assist with your Qualified Settlement Fund administration needs.</p>
+<div class="contact-form">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" class="form-control" placeholder="Your name">
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="form-control" placeholder="Your email">
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" class="form-control" placeholder="Your phone number">
+    </div>
+    <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" class="form-control" rows="4" placeholder="How can we help you?"></textarea>
+    </div>
+    <button type="submit" class="submit-btn">Send Message</button>
+</div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+<div class="footer-content">
+    <div class="footer-column">
+        <h3>Mercury Trust Company</h3>
+        <p>Providing professional QSF administration services with integrity, transparency, and excellence.</p>
+        <div class="social-links">
+            <a href="#" class="social-link">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" class="social-link">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+    </div>
+    <div class="footer-column">
+        <h3>Quick Links</h3>
+        <a href="index.html">Home</a>
+        <a href="qsf.html">QSF</a>
+        <a href="aboutus.html">About Us</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-column">
+        <h3>Contact Information</h3>
+        <p>1234 Financial District</p>
+        <p>New York, NY 10001</p>
+        <p>info@mercurytrust.co</p>
+        <p>(555) 123-4567</p>
+    </div>
+</div>
+<div class="copyright">
+    <p>&copy; 2025 Mercury Trust Company. All rights reserved.</p>
+</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+<script>
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
+
+// Mobile menu toggle
+const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+const mobileMenu = document.querySelector('.mobile-menu');
+
+mobileMenuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('active');
+});
+
+// Smooth scroll for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            window.scrollTo({
+                top: target.offsetTop - 100,
+                behavior: 'smooth'
+            });
+            
+            // Close mobile menu if open
+            mobileMenu.classList.remove('active');
+        }
+    });
+});
+
+// Contact button scroll to contact section
+document.querySelectorAll('.contact-btn, .hero-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const contactSection = document.querySelector('#contact');
+        window.scrollTo({
+            top: contactSection.offsetTop - 100,
+            behavior: 'smooth'
+        });
+        
+        // Close mobile menu if open
+        mobileMenu.classList.remove('active');
+    });
+});
+
+// Animation on scroll for feature cards
+const featureCards = document.querySelectorAll('.feature-card');
+const aboutImg = document.querySelector('.about-img');
+
+const animateOnScroll = () => {
+    featureCards.forEach((card, index) => {
+        const cardTop = card.getBoundingClientRect().top;
+        if (cardTop < window.innerHeight - 100) {
+            setTimeout(() => {
+                card.classList.add('visible');
+            }, index * 100);
+        }
+    });
+    
+    const imgTop = aboutImg.getBoundingClientRect().top;
+    if (imgTop < window.innerHeight - 100) {
+        aboutImg.classList.add('visible');
+    }
+};
+
+window.addEventListener('scroll', animateOnScroll);
+
+// Initial animation check
+window.addEventListener('load', animateOnScroll);
+</script>
+</body>
+</html>
